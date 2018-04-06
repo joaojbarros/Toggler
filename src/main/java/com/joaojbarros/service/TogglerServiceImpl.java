@@ -15,7 +15,7 @@ public class TogglerServiceImpl implements TogglesService{
 	@Override
 	public Toggles findByServiceIdVersion(String serviceId, String version) {
 		// TODO Auto-generated method stub
-		return null;
+		return togglesRepository.findCustomByServiceIdVersion(serviceId, version);
 	}
 
 	@Override

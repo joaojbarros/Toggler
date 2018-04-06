@@ -1,4 +1,4 @@
-package com.joaojbarros.toggler;
+package com.joaojbarros;
  
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +22,7 @@ public class SwaggerConfig {
  
 		docket
 		.select()
-		.apis(RequestHandlerSelectors.basePackage("br.com.ciceroednilson"))
+		.apis(RequestHandlerSelectors.basePackage("com.joaojbarros"))
 		.paths(PathSelectors.any())
 		.build()
 		.apiInfo(this.informacoesApi().build());
@@ -34,12 +34,12 @@ public class SwaggerConfig {
  
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
  
-		apiInfoBuilder.title("Api-Pessoa");
-		apiInfoBuilder.description("Api para realização de um CRUD.");
+		apiInfoBuilder.title("Api-Toggler");
+		apiInfoBuilder.description("Api para realização de um CRUD de entidades Toggler.");
 		apiInfoBuilder.version("1.0");
 		apiInfoBuilder.termsOfServiceUrl("Termo de uso: Deve ser usada para estudos.");
 		apiInfoBuilder.license("Licença - Open Source");
-		apiInfoBuilder.licenseUrl("http://www.ciceroednilson.com.br");
+		apiInfoBuilder.licenseUrl("http://www.joaojbarors.com");
 		apiInfoBuilder.contact(this.contato());
  
 		return apiInfoBuilder;
@@ -48,8 +48,8 @@ public class SwaggerConfig {
 	private Contact contato() {
  
 		return new Contact(
-				"Cícero Ednilson",
-				"http://www.ciceroednilson.com.br", 
-				"ciceroednilson@gmail.com");
+				"João Barros",
+				"http://www.joaojbarros.com", 
+				"joaojbarros@gmail.com");
 	}
 }
