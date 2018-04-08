@@ -1,4 +1,4 @@
-package com.joaojbarros;
+package com.joaojbarros.configuration;
  
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  
 @EnableSwagger2
 @Configuration
-public class SwaggerConfig {
+public class SwaggerConfiguration {
  
 	@Bean
 	public Docket detalheApi() {

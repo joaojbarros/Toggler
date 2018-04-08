@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.joaojbarros.model.Toggles;
 import com.joaojbarros.repository.TogglesRepository;
 
-@Service("userService")
+@Service("TogglerService")
 public class TogglerServiceImpl implements TogglesService{
 
 	@Autowired
