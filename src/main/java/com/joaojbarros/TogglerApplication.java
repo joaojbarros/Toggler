@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.joaojbarros.model.Toggles;
+import com.joaojbarros.model.ServiceToggles;
 import com.joaojbarros.repository.TogglesRepository;
 
 @SpringBootApplication
@@ -22,10 +22,10 @@ public class TogglerApplication {
 
         return args -> {
 
-            Toggles obj = togglesRepository.findCustomByServiceId("serviceABC");
+            ServiceToggles obj = togglesRepository.findCustomByServiceId("serviceABC");
             System.out.println(obj);
 
-            Toggles obj2 = togglesRepository.findCustomByServiceIdVersion("serviceABC", "1.0");
+            ServiceToggles obj2 = togglesRepository.findCustomByServiceIdVersion("serviceABC", "1.0");
             System.out.println(obj2);
         };
 

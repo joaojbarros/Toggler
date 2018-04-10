@@ -1,9 +1,9 @@
 package com.joaojbarros.service;
 
-import com.joaojbarros.model.Toggles;
+import com.joaojbarros.model.ServiceToggles;
 
 public interface TogglesService {
 	
-	public void saveToggle(Toggles toggles);
-	public Toggles findByServiceIdVersion(String serviceId, String version);
+	public void saveToggle(ServiceToggles toggles);
+	public ServiceToggles findByServiceIdVersion(String serviceId, String version);
 }

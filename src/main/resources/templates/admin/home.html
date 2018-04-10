@@ -5,12 +5,32 @@
 <head>
 <title>Admin Page</title>
 <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}" />
+<link href="../css/viewer.css" rel="stylesheet">
+<link href="../css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/jquery_002.js"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../js/jquery-1.8.2.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../js/bootstrap.js"></script>
+<script src="../js/jquery_002.js"></script>
+    <link href="../css/bootstrap.css" rel="stylesheet">
+    <script src="../js/jquery-1.8.2.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+
+<script src="../js/viewer.js"></script>
 </head>
 
-<body>
+<body onload="loadfromURL()"">
 	<div class="container">
 	
 		<form th:action="@{/logout}" method="get">
@@ -18,14 +38,33 @@
 				type="Submit">Logout</button>
 		</form>    
 		
-		<div class="panel-group" style="margin-top:40px">
+		<div class="panel-group">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					<span th:utext="${userName}"></span>
 				</div>
 				<div class="panel-body">
+					<input title="Service" class="service" type="text">
+					<input title="Version" class="serviceVersion" type="text"> 
+					<div id="json_pnl" class="left_panel"
+						style="width: 631.6px; display: none">
+						<div id="inner_text">
+							<textarea id="json_vl"
+								
+								wrap="hard"></textarea>
+						</div>
+					</div>
+					<div id="togglerPanel" 
+						style="width: 100%;">
+						<div id="table_pnl" style="width: 100%;">
+							<div class="top_size"></div>
+							<div id="inner_tbl">
+								<table></table>
+							</div>
+						</div>
+					</div> 
 				</div>
-				<p class="admin-message-text text-center" th:utext="${adminMessage}"></p>
+			
 			</div>
 		</div>
 		

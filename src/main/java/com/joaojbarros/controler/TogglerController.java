@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaojbarros.model.Toggles;
+import com.joaojbarros.model.ServiceToggles;
 import com.joaojbarros.service.TogglesService;
 
 import io.swagger.annotations.Api;
@@ -28,22 +28,22 @@ public class TogglerController {
 	@Autowired
 	private TogglesService togglesService;
 
-	@ApiOperation(value = "Search toggles parameters an your values", response=Toggles.class,  produces = "application/json")
+	@ApiOperation(value = "Search toggles parameters an your values", response=ServiceToggles.class,  produces = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
 					code=200, 
 					message="Retorna um ResponseModel com uma mensagem de sucesso",
-					response=Toggles.class
+					response=ServiceToggles.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="Caso tenhamos algum erro vamos retornar um ResponseModel com a Exception",
-					response=Toggles.class
+					response=ServiceToggles.class
 					)
  
 	})
 	@RequestMapping(value = "/toggler", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public @ResponseBody Toggles getToggles(@RequestParam(value="serviceId") String serviceId, @RequestParam(value="version") String version) {
+    public @ResponseBody ServiceToggles getToggles(@RequestParam(value="serviceId") String serviceId, @RequestParam(value="version") String version) {
         return togglesService.findByServiceIdVersion(serviceId, version);
     }
 	
