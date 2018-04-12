@@ -40,3 +40,7 @@ $ mvn spring-boot:run
 ```
 ## Swagger
 http://localhost:8080/swagger-ui.html
+![alt text](https://raw.githubusercontent.com/joaojbarros/images-readme/master/swagger.png)
+
+## Watch
+![alt text](https://raw.githubusercontent.com/joaojbarros/images-readme/master/view.png)
