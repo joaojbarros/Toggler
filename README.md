@@ -2,8 +2,9 @@
 
 # Toggler ![alt text](https://api.travis-ci.org/joaojbarros/Toggler.svg?branch=master)
 The Toggler Application provide apis for manager toggles for features from services/applications.
-the clients sends only yours identifiers and versions, then they can view all features and the hierarchy of toggles for that feature.
-the Toggler Applicaton provide on the GET api the reduce concept with two query strings, that are:
+The clients sends only yours identifiers and versions, then they can view all features and the hierarchy of toggles for that feature.
+
+The Toggler Applicaton provide on the GET api the reduce concept with two query strings, that are:
 ```html
 -fields
 ```
@@ -19,7 +20,7 @@ fields
 Represents the fields that you want on response body
 Ex.: 
 ```shell
-http://toggler.joaojbarros.com/toggler/services?fields=serviceFeatures.featureName, serviceId
+http://toggler.joaojbarros.com/toggler/services?fields=serviceFeatures.featureName,serviceId
 ```
 This call return only the serviceId and featureName from the entity serviceFeatures
 ## Package
