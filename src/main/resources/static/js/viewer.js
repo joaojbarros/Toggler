@@ -7,16 +7,6 @@ var json_visible = 1,
 $("#inner_tbl").show();
 jQuery(function(a) {
 
-    /*a("#all_panels").split({
-        orientation: "vertical",
-        //limit: 0,
-        position: "33%"
-    });
-    a("#xxa").split({
-        orientation: "vertical",
-        //limit: 0,
-        position: "50%"
-    });*/
     json_pnl_size = a("#json_pnl").width();
     xxa_pnl_size = a("#xxa").width();
     
@@ -26,20 +16,7 @@ jQuery(function(a) {
 
 });
 
-function sendMsg() {
-    $.ajax({
-        type: "GET",
-        url: "http://json2table-env-ayji8pibkt.elasticbeanstalk.com/save_msg",
-        data: {
-            callback: "call",
-            msg: $("#leaveMsg").val()
-        },
-        contentType: "application/json",
-        dataType: "jsonp",
-        success: function(a) {},
-        error: function(a) {}
-    })
-}
+
 var g;
 
 function loadfromURL(a) {
@@ -47,7 +24,7 @@ function loadfromURL(a) {
     $("#inner_tbl").html("");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/toggler/services?serviceId=serviceCDE&version=1.0&-fields=_id",
+        url: "/toggler/services?serviceId=serviceCDE&version=1.0&-fields=_id",
         accept: "application/json",
         success: function(a) {
             $("#json_vl").val(JSON.stringify(a, void 0, 2));
@@ -70,7 +47,7 @@ $( function() {
     
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/toggler/services?fields=serviceId&-fields=_id",
+        url: "/toggler/services?fields=serviceId&-fields=_id",
         accept: "application/json",
         success: function(a) {
         	$.each(a, function (index, value) {
@@ -94,7 +71,7 @@ $( function() {
     	if(serviceVal != undefined && serviceVal != ""){
 	    	$.ajax({
 		        type: "GET",
-		        url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&fields=version&-fields=_id",
+		        url: "/toggler/services?serviceId="+serviceVal+"&fields=version&-fields=_id",
 		        accept: "application/json",
 		        success: function(a) {
 		        	$.each(a, function (index, value) {
@@ -120,7 +97,7 @@ $( function() {
     	if(serviceVal != undefined && serviceVal != ""){
 	    	$.ajax({
 		        type: "GET",
-		        url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&fields=serviceFeatures.featureId&-fields=_id",
+		        url: "/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&fields=serviceFeatures.featureId&-fields=_id",
 		        accept: "application/json",
 		        success: function(a) {
 		        	$.each(a, function (index, value) {
@@ -151,7 +128,7 @@ $( function() {
         $("#inner_tbl").html("");
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&feature="+serviceFeatureVal+"&-fields=_id",
+            url: "/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&feature="+serviceFeatureVal+"&-fields=_id",
             accept: "application/json",
             success: function(a) {
                 $("#json_vl").val(JSON.stringify(a, void 0, 2));
@@ -294,7 +271,6 @@ function tableToObjFase2(table) {
     var trs = table.rows,
         trl = trs.length,
         i = 1,
-        //j = 0,
         
         ret = [];
     	var campoAtual = "";
