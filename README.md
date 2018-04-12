@@ -44,3 +44,6 @@ http://localhost:8080/swagger-ui.html
 
 ## Watcher
 ![alt text](https://raw.githubusercontent.com/joaojbarros/images-readme/master/view.png)
+
+## CI - Travis
+https://travis-ci.org/joaojbarros/Toggler.svg?branch=master
