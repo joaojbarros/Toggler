@@ -1,6 +1,6 @@
 package com.joaojbarros.model;
 
-public class ResponseError {
+public class ErrorResponse {
 	private long timestamp;
 	private int status;
 	private String error;

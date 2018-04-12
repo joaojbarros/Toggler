@@ -2,7 +2,7 @@ package com.joaojbarros.configuration;
  
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
- 
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -36,10 +36,10 @@ public class SwaggerConfiguration {
 		ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
  
 		apiInfoBuilder.title("Api-Toggler");
-		apiInfoBuilder.description("Api para realização de um CRUD de entidades Toggler.");
+		apiInfoBuilder.description("Api to perform CRUD of Toggler entities.");
 		apiInfoBuilder.version("1.0");
-		apiInfoBuilder.termsOfServiceUrl("Termo de uso: Deve ser usada para estudos.");
-		apiInfoBuilder.license("Licença - Open Source");
+		apiInfoBuilder.termsOfServiceUrl("Terms and Conditions of Use: Use only for education.");
+		apiInfoBuilder.license("License - Open Source");
 		apiInfoBuilder.licenseUrl("http://www.joaojbarros.com");
 		apiInfoBuilder.contact(this.contato());
  

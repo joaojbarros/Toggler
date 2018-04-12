@@ -8,6 +8,6 @@ public class UnexpectedException extends Exception {
 	private static final long serialVersionUID = 5295140893041880586L;
 
 	public UnexpectedException() {
-        super("Erro inesperado na execução da API");
+        super("Unexpected error");
     }
 }

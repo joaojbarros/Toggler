@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.joaojbarros.model.ResponseError;
+import com.joaojbarros.model.ErrorResponse;
 
 @ControllerAdvice
 @RestController
@@ -21,8 +21,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 						ObjectNotExistsOnDeletionException.class,
 						ObjectAlreadyExistsOnCreationException.class,
 						ObjectNotExistsOnUpdateException.class})
-  public final ResponseEntity<ResponseError> handleBadRequestException(DuplicateKeyException ex, WebRequest request) {
-	  ResponseError errorDetails = new ResponseError();
+  public final ResponseEntity<ErrorResponse> handleBadRequestException(DuplicateKeyException ex, WebRequest request) {
+	  ErrorResponse errorDetails = new ErrorResponse();
 	  errorDetails.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
 	  errorDetails.setException(ex.getClass().getName());
 	  errorDetails.setMessage(ex.getMessage());
@@ -32,8 +32,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
   }
 	
 	@ExceptionHandler(DuplicateKeyException.class)
-		public final ResponseEntity<ResponseError> handleBadRequesrVanilaException(DuplicateKeyException ex, WebRequest request) {
-		ResponseError errorDetails = new ResponseError();
+		public final ResponseEntity<ErrorResponse> handleBadRequesrVanilaException(DuplicateKeyException ex, WebRequest request) {
+		ErrorResponse errorDetails = new ErrorResponse();
 		errorDetails.setError(HttpStatus.BAD_REQUEST.getReasonPhrase());
 		errorDetails.setException(ex.getClass().getName());
 		errorDetails.setMessage("The object with same identifiers already exists.");
@@ -43,8 +43,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 }
 	
   @ExceptionHandler(Exception.class)
-  public final ResponseEntity<ResponseError> handleGeneralException(DuplicateKeyException ex, WebRequest request) {
-	  ResponseError errorDetails = new ResponseError();
+  public final ResponseEntity<ErrorResponse> handleGeneralException(DuplicateKeyException ex, WebRequest request) {
+	  ErrorResponse errorDetails = new ErrorResponse();
 	  errorDetails.setError(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
 	  errorDetails.setException(ex.getClass().getName());
 	  errorDetails.setMessage("An unexpected error occurs.");
@@ -54,8 +54,8 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
   }
   
   @ExceptionHandler(DependenceObjectNotExistsOnCreationException.class)
-  public final ResponseEntity<ResponseError> handleUnprocessableEntityException(DependenceObjectNotExistsOnCreationException ex, WebRequest request) {
-	  ResponseError errorDetails = new ResponseError();
+  public final ResponseEntity<ErrorResponse> handleUnprocessableEntityException(DependenceObjectNotExistsOnCreationException ex, WebRequest request) {
+	  ErrorResponse errorDetails = new ErrorResponse();
 	  errorDetails.setError(HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase());
 	  errorDetails.setException(ex.getClass().getName());
 	  errorDetails.setMessage(ex.getMessage());

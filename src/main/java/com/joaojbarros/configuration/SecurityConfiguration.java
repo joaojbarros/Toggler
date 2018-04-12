@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -28,6 +29,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Value("${spring.queries.roles-query}")
 	private String rolesQuery;
+	
+	@Autowired
+	private AuthenticationEntryPoint authEntryPoint;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth)
@@ -42,7 +46,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
 		http.
 			authorizeRequests()
 				.antMatchers("/").permitAll()
@@ -57,7 +60,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.and().logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.logoutSuccessUrl("/").and().exceptionHandling()
-				.accessDeniedPage("/access-denied");
+				.accessDeniedPage("/access-denied").and().headers().cacheControl().disable().and().csrf().disable()
+			    .authorizeRequests()
+			    .antMatchers("/toggler/**").hasAuthority("ADMIN").anyRequest()
+				.authenticated()
+			    .and().httpBasic()
+			    .authenticationEntryPoint(authEntryPoint);
 	}
 	
 	@Override

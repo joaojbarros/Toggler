@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaojbarros.model.ResponseError;
+import com.joaojbarros.model.ErrorResponse;
 import com.joaojbarros.model.ServiceToggle;
 import com.joaojbarros.model.Toggle;
 import com.joaojbarros.model.ToggleValue;
@@ -34,12 +35,14 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import net.rossillo.spring.web.mvc.CacheControl;
 
+
 @RestController
 @CrossOrigin(origins  = "http://localhost:8080")
 @RequestMapping(value = "/toggler")
 @Api(tags = "Toggler", value = "Toggler", 
-	description = "This API provides the capability to include a toggle and purge the cache from aplicaton"
+	description = "This API provides the capability to manager toggles and your hierarchy "
 	, produces = "application/json", consumes="application/json")
+@ExposesResourceFor(Toggle.class)
 public class TogglerController {
 	
 	@Autowired
@@ -62,12 +65,12 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -86,6 +89,7 @@ public class TogglerController {
 			@RequestParam(value = "-fields", required = false) String excludeFields) {
 		List<ServiceToggle> serviceToggles = null;
 		serviceToggles = togglerService.findCustomByServiceIdVersionFieldsExcludeFields(serviceId, version, featureId, fields, excludeFields);
+		
         return serviceToggles;
     }
 	
@@ -99,12 +103,12 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -134,12 +138,17 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="If client send an wrong request",
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -149,7 +158,7 @@ public class TogglerController {
 			@ApiParam(name = "serviceToggles", value = "The body of serviceToggles and your features definitions") @Valid @RequestBody(required = true) ServiceToggle serviceToggles) throws Exception {
 		serviceToggles = togglerService.saveServiceToggle(serviceToggles);
 		HttpHeaders headers = new HttpHeaders();
-		headers.set("Location", "http://localhost:8080/toggler/services/"+serviceToggles.getServiceId());
+		headers.set("Location", "http://localhost:8080/toggler/toggles/"+serviceToggles.getServiceId());
         return new ResponseEntity<ServiceToggle>(serviceToggles, headers, HttpStatus.CREATED);
     }
 	
@@ -167,12 +176,12 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -201,12 +210,12 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -225,7 +234,7 @@ public class TogglerController {
 	 * @param serviceToggles
 	 * @return
 	 */
-	@ApiOperation(value = "Find toggles, optional by your value", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
+	@ApiOperation(value = "Find toggles, optionaly by your value", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
 					code=200, 
@@ -236,12 +245,12 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -269,17 +278,17 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=422, 
 					message="If the process has breaked by a business rule or database restrictions.",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -309,17 +318,17 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=422, 
 					message="If the process has breaked by a business rule or database restrictions.",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
@@ -345,22 +354,23 @@ public class TogglerController {
 	@ApiResponses(value= {
 			@ApiResponse(
 					code=204, 
-					message="Success deletion"
+					message="Deletion Success"
 					),
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
 	@CacheControl(maxAge=300)
 	@RequestMapping(value = "/toggles/{toggleName}", method = RequestMethod.DELETE)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	@ApiParam(required = true, name = "toggleName", value = "The toggle name")
 	public @ResponseBody void deleteToggle(@PathVariable(required = true) String toggleName)
 			throws Exception {
@@ -372,25 +382,26 @@ public class TogglerController {
 	 * @return
 	 * @throws Exception 
 	 */
-	@ApiOperation(value = "Delete toggle by id")
+	@ApiOperation(value = "Delete serviceToggles by serviceId and version")
 	@ApiResponses(value= {
 			@ApiResponse(
 					code=204, 
-					message="Success deletion"
+					message="Deletion Success"
 					),
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					),
 			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
-					response = ResponseError.class
+					response = ErrorResponse.class
 					)
  
 	})
-	@RequestMapping(value = "/services/{serviceId}/{version}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@RequestMapping(value = "/services/{serviceId}/{version:.+}", method = RequestMethod.DELETE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseStatus(value = HttpStatus.NO_CONTENT)
 	public void deleteServiceTogglesById(
 			@ApiParam(required = true, name = "serviceId", value = "The service identification")
 			@PathVariable(required = true) String serviceId,

@@ -5,12 +5,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.hateoas.config.EnableHypermediaSupport;
+import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
 
 import com.joaojbarros.model.ServiceToggle;
 import com.joaojbarros.repository.TogglerRepository;
 
 @SpringBootApplication
 @EnableMongoRepositories(basePackageClasses = TogglerRepository.class)
+@EnableHypermediaSupport(type = HypermediaType.HAL)
 public class TogglerApplication {
 
 	public static void main(String[] args) {

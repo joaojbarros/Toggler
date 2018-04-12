@@ -6,6 +6,8 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @JsonInclude(Include.NON_NULL)
 public class ServiceTogglesDefinition {
 
@@ -39,7 +41,7 @@ public class ServiceTogglesDefinition {
 	public void setToggleName(String toggleName) {
 		this.toggleName = toggleName;
 	}
-	
+	@ApiModelProperty(hidden = true,readOnly = true)
 	public List<Link> getLinks() {
 		List<Link> links = new ArrayList<>();
 	    Link link = new Link();

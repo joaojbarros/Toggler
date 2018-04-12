@@ -7,6 +7,6 @@ public class DependenceObjectNotExistsOnCreationException extends Exception {
 	private static final long serialVersionUID = 5295140893041880586L;
 
 	public DependenceObjectNotExistsOnCreationException(String value, String object) {
-        super("Não encontrado objeto "+object+" com identificador "+value+". Não é possível realizar a deleção.");
+        super("Not found entity "+object+" with identifier "+value+". Can't process the entity creation.");
     }
 }
