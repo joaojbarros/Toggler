@@ -46,7 +46,7 @@ public class ServiceTogglesDefinition {
 		List<Link> links = new ArrayList<>();
 	    Link link = new Link();
 	    link.setRel("self");
-	    link.setHref("http://localhost:8080/toggler/toggles/"+toggleName);
+	    link.setHref("http://toggler.joaojbarros.com/toggler/toggles/"+toggleName);
 	    links.add(link);
 		return links;
 	}

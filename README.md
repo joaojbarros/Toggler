@@ -10,7 +10,7 @@ the Toggler Applicaton provide on the GET api the reduce concept with two query 
 Represents the fields that you not want on response body.
 Ex: 
 ```shell
-http://localhost:8080/toggler/services?-fields=serviceFeatures.serviceTogglesDefinitions,serviceFeatures.featureName
+http://toggler.joaojbarros.com/toggler/services?-fields=serviceFeatures.serviceTogglesDefinitions,serviceFeatures.featureName
 ```
 This call return all fields from model entity without serviceFeatures.serviceTogglesDefinitions and serviceFeatures.featureName
 ```html
@@ -19,7 +19,7 @@ fields
 Represents the fields that you want on response body
 Ex.: 
 ```shell
-http://localhost:8080/toggler/services?fields=serviceFeatures.featureName, serviceId
+http://toggler.joaojbarros.com/toggler/services?fields=serviceFeatures.featureName, serviceId
 ```
 This call return only the serviceId and featureName from the entity serviceFeatures
 ## Package
@@ -41,7 +41,7 @@ $ java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=8000,suspend=n \
 $ mvn spring-boot:run
 ```
 ## Swagger
-http://localhost:8080/swagger-ui.html
+http://toggler.joaojbarros.com/swagger-ui.html
 ![alt text](https://raw.githubusercontent.com/joaojbarros/images-readme/master/swagger.png)
 
 ## Watcher

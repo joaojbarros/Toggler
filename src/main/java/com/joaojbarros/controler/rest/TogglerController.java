@@ -68,6 +68,11 @@ public class TogglerController {
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
 					response = ErrorResponse.class
@@ -103,6 +108,11 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
@@ -142,7 +152,7 @@ public class TogglerController {
 					),
 			@ApiResponse(
 					code=401, 
-					message="If client send an wrong request",
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
@@ -158,7 +168,7 @@ public class TogglerController {
 			@ApiParam(name = "serviceToggles", value = "The body of serviceToggles and your features definitions") @Valid @RequestBody(required = true) ServiceToggle serviceToggles) throws Exception {
 		serviceToggles = togglerService.saveServiceToggle(serviceToggles);
 		HttpHeaders headers = new HttpHeaders();
-		headers.set("Location", "http://localhost:8080/toggler/toggles/"+serviceToggles.getServiceId());
+		headers.set("Location", "http://toggler.joaojbarros.com/toggler/toggles/"+serviceToggles.getServiceId());
         return new ResponseEntity<ServiceToggle>(serviceToggles, headers, HttpStatus.CREATED);
     }
 	
@@ -175,6 +185,11 @@ public class TogglerController {
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
 					response = ErrorResponse.class
@@ -188,7 +203,7 @@ public class TogglerController {
 		
 		toggles = togglerService.saveToggle(toggles);
 		HttpHeaders headers = new HttpHeaders();
-		headers.set("Location", "http://localhost:8080/toggler/tuggles/"+toggles.getToggleName());
+		headers.set("Location", "http://toggler.joaojbarros.com/toggler/tuggles/"+toggles.getToggleName());
         return new ResponseEntity<Toggle>(toggles, headers, HttpStatus.CREATED);
     }
 	
@@ -202,6 +217,11 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
@@ -236,6 +256,11 @@ public class TogglerController {
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
 					response = ErrorResponse.class
@@ -261,6 +286,11 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
@@ -296,6 +326,11 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
@@ -335,6 +370,11 @@ public class TogglerController {
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
 					code=500, 
 					message="If error, return ResponseError model",
 					response = ErrorResponse.class
@@ -359,6 +399,11 @@ public class TogglerController {
 			@ApiResponse(
 					code=400, 
 					message="If client send an wrong request",
+					response = ErrorResponse.class
+					),
+			@ApiResponse(
+					code=401, 
+					message="Unauthorized",
 					response = ErrorResponse.class
 					),
 			@ApiResponse(
