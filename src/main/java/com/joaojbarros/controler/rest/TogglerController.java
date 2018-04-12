@@ -162,10 +162,6 @@ public class TogglerController {
         return new ResponseEntity<ServiceToggle>(serviceToggles, headers, HttpStatus.CREATED);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 */
 	@ApiOperation(value = "Include toggles and your values", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -196,10 +192,6 @@ public class TogglerController {
         return new ResponseEntity<Toggle>(toggles, headers, HttpStatus.CREATED);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 */
 	@ApiOperation(value = "Find toggles and your values by id", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -230,10 +222,6 @@ public class TogglerController {
         return new ResponseEntity<Toggle>(toggles, headers, HttpStatus.OK);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 */
 	@ApiOperation(value = "Find toggles, optionaly by your value", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -263,11 +251,6 @@ public class TogglerController {
         return new ResponseEntity<List<Toggle>>(toggles, headers, HttpStatus.OK);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 * @throws Exception 
-	 */
 	@ApiOperation(value = "Update toggle value by id", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -303,11 +286,6 @@ public class TogglerController {
         return new ResponseEntity<Toggle>(toggleResponse, headers, HttpStatus.OK);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 * @throws Exception 
-	 */
 	@ApiOperation(value = "Update toggle value by id", response=ServiceToggle.class,  produces = "application/json", consumes = "application/json")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -345,11 +323,6 @@ public class TogglerController {
         return new ResponseEntity<ServiceToggle>(serviceToggleResponse, headers, HttpStatus.OK);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 * @throws Exception 
-	 */
 	@ApiOperation(value = "Delete toggle by id")
 	@ApiResponses(value= {
 			@ApiResponse(
@@ -377,11 +350,6 @@ public class TogglerController {
 		togglerService.deleteToggle(toggleName);
     }
 	
-	/**
-	 * @param serviceToggles
-	 * @return
-	 * @throws Exception 
-	 */
 	@ApiOperation(value = "Delete serviceToggles by serviceId and version")
 	@ApiResponses(value= {
 			@ApiResponse(

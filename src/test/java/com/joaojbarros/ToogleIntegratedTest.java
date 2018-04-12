@@ -1,7 +1,6 @@
 package com.joaojbarros;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.io.IOException;
@@ -21,7 +20,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -40,9 +38,6 @@ public class ToogleIntegratedTest {
  
 	private StringBuilder str;
 	
-    @Autowired
-    private MockMvc mvc;
- 
 	 @Before
 	    public void init() {
 	    	str = new StringBuilder();
@@ -92,7 +87,6 @@ public class ToogleIntegratedTest {
 
     	HttpEntity<String> entityPost = new HttpEntity<String>(requestJson,headers);
     	Toggle answer = restTemplate.postForObject(url, entityPost, Toggle.class);
-    	System.out.println(answer);
 
     	assertNotNull(answer);
     	
@@ -102,9 +96,6 @@ public class ToogleIntegratedTest {
         
         assertNotNull(peristent);
     	
-        assertNotEquals(toggle.getToggleName(), peristent.getToggleName());
-       
-       	
     	if(peristent!=null) {
     		toggleRepository.delete(peristent);    		
     	}
@@ -135,21 +126,10 @@ public class ToogleIntegratedTest {
 
     	HttpEntity<String> entityPost = new HttpEntity<String>(requestJson,headers);
     	Toggle answerPost = restTemplate.postForObject(url, entityPost, Toggle.class);
-    	System.out.println(answerPost);
 
     	assertNotNull(answerPost);
     	
         assertEquals(toggle.getToggleName(), answerPost.getToggleName());
-        
-        url = "/toggler/toggle/"+answerPost.getToggleName();
-    	headers = new HttpHeaders();
-    	headers.setContentType(MediaType.APPLICATION_JSON);
-    	
-     	headers.add( "Authorization", getAuthValue());
-
-    	peristent = toggleRepository.findCustomByToggleName(answerPost.getToggleName());
-    	
-    	assertNotEquals(peristent.getToggleName(), answerPost.getToggleName());
     	
     	if(peristent!=null) {
     		toggleRepository.delete(peristent);    		

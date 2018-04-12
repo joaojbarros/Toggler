@@ -6,7 +6,6 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.EntityLinks;
 import org.springframework.stereotype.Service;
 
 import com.joaojbarros.exception.DependenceObjectNotExistsOnCreationException;
@@ -33,9 +32,6 @@ public class TogglerServiceImpl implements TogglerService{
 	
 	@Autowired
 	private TogglerDAO TogglesDAO;
-	
-	@Autowired
-	private EntityLinks entityLinks;
 	
 	public ServiceToggle findByServiceIdVersion(String serviceId, String version) {
 		return togglerRepository.findCustomByServiceIdVersion(serviceId, version);

@@ -20,8 +20,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.codec.Base64;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -40,9 +38,6 @@ public class TogglerServiceIntegratedTest {
 	
 	private StringBuilder strABC;
 	
-    @Autowired
-    private MockMvc mvc;
- 
 	 @Before
 	    public void init() {
 		 	strZZZ = new StringBuilder();
