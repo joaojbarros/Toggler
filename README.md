@@ -1,4 +1,6 @@
-# Toggler
+
+
+# Toggler ![alt text](https://api.travis-ci.org/joaojbarros/Toggler.svg?branch=master)
 The Toggler Application provide apis for manager toggles for features from services/applications.
 the clients sends only yours identifiers and versions, then they can view all features and the hierarchy of toggles for that feature.
 the Toggler Applicaton provide on the GET api the reduce concept with two query strings, that are:
