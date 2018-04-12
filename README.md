@@ -49,3 +49,18 @@ http://localhost:8080/swagger-ui.html
 
 ## CI - Travis
 https://travis-ci.org/joaojbarros/Toggler
+
+## Implemented
+### Authentication/Authorization
+### SQL Database for user and roles
+### NoSQL for toggles and services definitions
+### Payload reduce on call
+### Http headers with cache controll
+### Hippermedia - Hateos
+### Swagger definitions
+### Automation/Unit/Integration Testing
+
+
+## Not implemented - need improve
+### Easy way to change the hostname on Hateos Link
+
