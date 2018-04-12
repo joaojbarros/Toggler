@@ -138,7 +138,7 @@ public class ToogleIntegratedTest {
        
     
     private String getAuthValue() {
-		String auth = "joaojbarros@gmail.com:x1234567";
+		String auth = "ci@toggler.com:x1234567";
 		byte[] encodedAuth = Base64.encode( 
 		auth.getBytes(Charset.forName("US-ASCII")) );
 		String authHeader = "Basic " + new String( encodedAuth );
