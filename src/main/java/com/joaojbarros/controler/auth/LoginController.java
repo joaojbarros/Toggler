@@ -1,4 +1,4 @@
-package com.joaojbarros.controler;
+package com.joaojbarros.controler.auth;
 
 import javax.validation.Valid;
 

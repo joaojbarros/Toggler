@@ -7,8 +7,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Document(collection = "serviceToggles")
-public class ServiceToggles {
+@JsonInclude(Include.NON_NULL)
+public class ServiceToggle {
 
 	@Id
 	private BigInteger _id;
@@ -21,6 +26,7 @@ public class ServiceToggles {
 	private String version;
 	private List<ServiceFeature> serviceFeatures;
 
+	@JsonIgnore
 	public BigInteger get_id() {
 		return _id;
 	}

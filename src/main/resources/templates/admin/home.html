@@ -8,10 +8,12 @@
 <link href="../css/viewer.css" rel="stylesheet">
 <link href="../css/bootstrap.css" rel="stylesheet">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="../js/bootstrap.js"></script>
-<script src="../js/jquery_002.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -19,18 +21,11 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="../js/jquery-1.8.2.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="../js/bootstrap.js"></script>
-<script src="../js/jquery_002.js"></script>
-    <link href="../css/bootstrap.css" rel="stylesheet">
-    <script src="../js/jquery-1.8.2.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-
 <script src="../js/viewer.js"></script>
 </head>
 
-<body onload="loadfromURL()"">
+<body>
 	<div class="container">
 	
 		<form th:action="@{/logout}" method="get">
@@ -44,8 +39,11 @@
 					<span th:utext="${userName}"></span>
 				</div>
 				<div class="panel-body">
-					<input title="Service" class="service" type="text">
-					<input title="Version" class="serviceVersion" type="text"> 
+					<input title="Service" id="service" type="text">
+					<input title="Version" id="serviceVersion" type="text">
+					 <input title="Feature" id="serviceFeature" type="text">
+					<button class="btn btn-md btn-danger btn-block" id="executeget"
+						type="Submit">Consultar</button>
 					<div id="json_pnl" class="left_panel"
 						style="width: 631.6px; display: none">
 						<div id="inner_text">
@@ -64,10 +62,8 @@
 						</div>
 					</div> 
 				</div>
-			
 			</div>
 		</div>
-		
 	</div>
 </body>
 </html>

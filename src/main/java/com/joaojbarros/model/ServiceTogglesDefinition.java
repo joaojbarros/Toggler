@@ -1,5 +1,12 @@
 package com.joaojbarros.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class ServiceTogglesDefinition {
 
 	
@@ -31,5 +38,14 @@ public class ServiceTogglesDefinition {
 
 	public void setToggleName(String toggleName) {
 		this.toggleName = toggleName;
+	}
+	
+	public List<Link> getLinks() {
+		List<Link> links = new ArrayList<>();
+	    Link link = new Link();
+	    link.setRel("self");
+	    link.setHref("http://localhost:8080/toggler/toggles/"+toggleName);
+	    links.add(link);
+		return links;
 	}
 }

@@ -47,7 +47,7 @@ function loadfromURL(a) {
     $("#inner_tbl").html("");
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/configs/toggler?serviceId=serviceCDE&version=1.0",
+        url: "http://localhost:8080/toggler/services?serviceId=serviceCDE&version=1.0&-fields=_id",
         accept: "application/json",
         success: function(a) {
             $("#json_vl").val(JSON.stringify(a, void 0, 2));
@@ -61,6 +61,111 @@ function loadfromURL(a) {
         }
     })
 }
+
+$( function() {
+	$("#service").attr("placeholder", "Type a Service").val("").focus().blur();
+	$("#serviceVersion").attr("placeholder", "Type a Service Version").val("").focus().blur();
+	$("#serviceFeature").attr("placeholder", "Type a Service Feature").val("").focus().blur();
+    var availableServices = [];
+    
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/toggler/services?fields=serviceId&-fields=_id",
+        accept: "application/json",
+        success: function(a) {
+        	$.each(a, function (index, value) {
+        		
+                console.log(value.serviceId);
+                availableServices.push(value.serviceId)
+            });
+        },
+        error: function(e) {
+        	console.log(JSON.stringify(e));
+            return {}
+        }
+    })
+    
+    $( "#service" ).autocomplete({
+      source: availableServices
+    });
+    $( "#service" ).blur(function () {
+    	var serviceVal = $( "#service" ).val();
+    	var availableVersions = [];
+    	if(serviceVal != undefined && serviceVal != ""){
+	    	$.ajax({
+		        type: "GET",
+		        url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&fields=version&-fields=_id",
+		        accept: "application/json",
+		        success: function(a) {
+		        	$.each(a, function (index, value) {
+		                console.log(value.version);
+		                availableVersions.push(value.version)
+		            });
+		        },
+		        error: function(e) {
+		        	console.log(JSON.stringify(e));
+		            return {}
+		        }
+		    });
+	    	
+		    $( "#serviceVersion" ).autocomplete({
+		        source: availableVersions
+		    });
+    	}
+    });
+    $( "#serviceVersion" ).blur(function () {
+    	var serviceVal = $( "#service" ).val();
+    	var serviceVersionVal = $( "#serviceVersion" ).val();
+    	var availableFeatures = [];
+    	if(serviceVal != undefined && serviceVal != ""){
+	    	$.ajax({
+		        type: "GET",
+		        url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&fields=serviceFeatures.featureId&-fields=_id",
+		        accept: "application/json",
+		        success: function(a) {
+		        	$.each(a, function (index, value) {
+		                console.log(value.serviceFeatures);
+		                availableFeatures.push(value.serviceFeatures)
+			        	$.each(value.serviceFeatures, function (indexFeatures, valueFeatures) {
+			                console.log(valueFeatures.featureId);
+			                availableFeatures.push(valueFeatures.featureId)
+			            });
+		            });
+		        },
+		        error: function(e) {
+		        	console.log(JSON.stringify(e));
+		            return {}
+		        }
+		    });
+	    	
+		    $( "#serviceFeature" ).autocomplete({
+		        source: availableFeatures
+		    });
+    	}
+    });
+    $( "#executeget" ).click(function (){
+    	var serviceVal = $( "#service" ).val();
+    	var serviceVersionVal = $( "#serviceVersion" ).val();
+    	var serviceFeatureVal = $( "#serviceFeature" ).val();
+        $("#json_vl").val("Loading...");
+        $("#inner_tbl").html("");
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:8080/toggler/services?serviceId="+serviceVal+"&version="+serviceVersionVal+"&feature="+serviceFeatureVal+"&-fields=_id",
+            accept: "application/json",
+            success: function(a) {
+                $("#json_vl").val(JSON.stringify(a, void 0, 2));
+                processJson()
+            },
+            error: function(e) {
+                $("#json_vl").val("");
+                $("#error_msg").text("Not a valid JSON from " + a);
+                $("#errorModal").modal("show");
+                return {}
+            }
+        })
+    });
+  } );
 
 function call(a) {
     $("#json_vl").val(JSON.stringify(a, void 0, 2));
@@ -175,17 +280,13 @@ function tableToObjFase1( table ) {
     for (; i < trs.length; i++) {
         	if(trs[i].lastChild != undefined && trs[i].lastChild.lastChild.localName == "table"){ 
         		console.log(trs[i].firstChild.firstChild.textContent);
-        		console.log("recursivo!")
         		jsonObj[trs[i].firstChild.firstChild.textContent] = tableToObjFase2(trs[i].lastChild.lastChild);
-        		console.log("retorno recursivo!")
         	}else{
         		console.log(trs[i].firstChild.textContent);
         		jsonObj[trs[i].firstChild.textContent] = trs[i].lastChild.textContent;  
         		
         	}
     }
-    console.log(jsonObj);
-    console.log(JSON.stringify(jsonObj));
     return jsonObj;
 };
 
@@ -214,7 +315,6 @@ function tableToObjFase2(table) {
         }
         ret.push(jsonObj);
     }
-    console.log(JSON.stringify(ret));
     return ret;
 };
 
@@ -239,15 +339,11 @@ function tableToObjFase3(table) {
         }
         ret.push(jsonObji);
     }
-    console.log(JSON.stringify(ret));
     return ret;
 };
 
 $('.td_row_even').click(function(){
-	alert("editavel");
 	var newelement = document;
  $(newelement).blur(function(){
-  //use $.ajax to send the element's value to your server
-  //remove the input element and then replace the previous element with the new value
  });
 });

@@ -6,11 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import com.joaojbarros.model.ServiceToggles;
-import com.joaojbarros.repository.TogglesRepository;
+import com.joaojbarros.model.ServiceToggle;
+import com.joaojbarros.repository.TogglerRepository;
 
 @SpringBootApplication
-@EnableMongoRepositories(basePackageClasses = TogglesRepository.class)
+@EnableMongoRepositories(basePackageClasses = TogglerRepository.class)
 public class TogglerApplication {
 
 	public static void main(String[] args) {
@@ -18,14 +18,14 @@ public class TogglerApplication {
 	}
 	
 	@Bean
-    CommandLineRunner init(TogglesRepository togglesRepository) {
+    CommandLineRunner init(TogglerRepository togglesRepository) {
 
         return args -> {
 
-            ServiceToggles obj = togglesRepository.findCustomByServiceId("serviceABC");
+            ServiceToggle obj = togglesRepository.findCustomByServiceId("serviceABC");
             System.out.println(obj);
 
-            ServiceToggles obj2 = togglesRepository.findCustomByServiceIdVersion("serviceABC", "1.0");
+            ServiceToggle obj2 = togglesRepository.findCustomByServiceIdVersion("serviceABC", "1.0");
             System.out.println(obj2);
         };
 

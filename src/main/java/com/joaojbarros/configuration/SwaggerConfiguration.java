@@ -22,10 +22,11 @@ public class SwaggerConfiguration {
  
 		docket
 		.select()
-		.apis(RequestHandlerSelectors.basePackage("com.joaojbarros"))
+		.apis(RequestHandlerSelectors.basePackage("com.joaojbarros.controler.rest"))
 		.paths(PathSelectors.any())
 		.build()
-		.apiInfo(this.informacoesApi().build());
+		.apiInfo(this.informacoesApi().build())
+		.useDefaultResponseMessages(false);
  
 		return docket;
 	}
@@ -39,7 +40,7 @@ public class SwaggerConfiguration {
 		apiInfoBuilder.version("1.0");
 		apiInfoBuilder.termsOfServiceUrl("Termo de uso: Deve ser usada para estudos.");
 		apiInfoBuilder.license("Licença - Open Source");
-		apiInfoBuilder.licenseUrl("http://www.joaojbarors.com");
+		apiInfoBuilder.licenseUrl("http://www.joaojbarros.com");
 		apiInfoBuilder.contact(this.contato());
  
 		return apiInfoBuilder;
