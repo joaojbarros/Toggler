@@ -56,7 +56,7 @@ https://travis-ci.org/joaojbarros/Toggler
 ### NoSQL for toggles and services definitions
 ### Payload reduce on call
 ### Http headers with cache controll
-### Hippermedia - Hateos
+### Hypermedia - Hateos
 ### Swagger definitions
 ### Automation/Unit/Integration Testing
 
